@@ -4,4 +4,4 @@ WORKDIR /home/app/src
 COPY --chown=node:node . .
 RUN yarn install --frozen-lockfile
 CMD ["yarn", "start"]
-EXPOSE 3000:3000
+EXPOSE 3000
