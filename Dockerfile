@@ -1,5 +1,7 @@
 FROM node:18-bookworm
 USER node
 WORKDIR /home/app/src
-COPY --chown=node:node . /home/app/src
-CMD node index.js
+COPY --chown=node:node . .
+RUN yarn install --frozen-lockfile
+CMD ["yarn", "start"]
+EXPOSE 3000:3000
