@@ -1,4 +1,8 @@
-FROM node:18-bookworm
+FROM alpine:3.15
+
+RUN apk add --update nodejs yarn
+
+RUN addgroup -S node && adduser -S node -G node
 
 USER node
 WORKDIR /home/app/src
