@@ -1,10 +1,11 @@
 // more-or-less the example code from the hapi-pino repo
-const hapi = require("@hapi/hapi");
+const Hapi = require("@hapi/hapi");
 
 async function start() {
-  const server = hapi.server({
-    host: "0.0.0.0",
+  const server = Hapi.server({
+    host: "localhost",
     port: process.env.PORT || 3000,
+    debug: false,
   });
 
   server.route({
@@ -18,9 +19,15 @@ async function start() {
   await server.register({
     plugin: require("hapi-pino"),
     options: {
-      prettyPrint: true,
+      colorize: true,
     },
   });
+
+  // also as a decorated API
+  server.logger.info("another way for accessing it");
+
+  // and through Hapi standard logging system
+  server.log(["subsystem"], "third way for accessing it");
 
   await server.start();
 
