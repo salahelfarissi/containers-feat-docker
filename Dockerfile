@@ -1,4 +1,5 @@
 FROM node:18-bookworm
-COPY . /app
-WORKDIR /app
+USER node
+WORKDIR /home/app/src
+COPY --chown=node:node . /home/app/src
 CMD node index.js
