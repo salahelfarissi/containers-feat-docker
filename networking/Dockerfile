@@ -2,6 +2,8 @@ FROM alpine:3.15
 
 RUN apk add --update nodejs npm
 
+RUN npm i -g nodemon
+
 RUN addgroup -S node && adduser -S node -G node
 
 USER node
@@ -14,4 +16,4 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
-CMD ["node", "index.js"]
+CMD ["nodemon", "index.js"]
